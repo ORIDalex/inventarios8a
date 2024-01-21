@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EstacionesController;
+use App\Http\Controllers\CampaniasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +31,8 @@ Route::middleware([
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('estaciones', EstacionesController::class)->except(['show'])
+->middleware('auth');
+Route::resource('campanias', CampaniasController::class)->except(['show'])
+    ->middleware('auth');
+

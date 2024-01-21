@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('estaciones', function (Blueprint $table) {
             $table->id();
+            $table->integer("equipos_id");
+            $table->string("nodo",10);
+            $table->string("piso",30);
+            $table->integer("campanias_id");
+            $table->string("estado",30);
+            $table->string("supervisor",300);
+            $table->string("visible",30);
             $table->timestamps();
         });
     }

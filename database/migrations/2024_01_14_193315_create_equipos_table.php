@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
+            $table->string("numeroserie", 50);
+            $table->string("marca", 50);
+            $table->string("modelo", 50);
+            $table->string("sistemaoperativo", 50);
+            $table->string("tipo", 50);
+            $table->string("valor", 50);
+            $table->string("anio", 50);
+            $table->string("estado", 30);
             $table->timestamps();
         });
     }
