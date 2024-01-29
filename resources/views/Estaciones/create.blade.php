@@ -16,20 +16,51 @@
                </div>
            @endif
 
+campanias_id
+visible
 
            <div class="form-group">
-               <label for="nombre">nombre</label>
-               <input type="text" class="form-control" id="nombre" name="nombre" value="{{old('nombre')}}" />
+               <label for="equipos_id">Equipo </label>
+               <input type="text" class="form-control" id="equipos_id" name="equipos_id" value="{{old('equipos_id')}}" />
            </div>
            <div class="form-group">
-               <label for="domicilio">Descripción</label>
-               <textarea class="form-control" id="domicilio" name="domicilio">{{old('domicilio')}}</textarea>
+               <label for="nodo">Nodo</label>
+               <input type="text" class="form-control" id="nodo" name="nodo" value="{{old('nodo')}}" />
            </div>
            <div class="form-group">
-               <label for="correo">E-mail</label>
-               <textarea class="form-control" id="correo" name="correo">{{old('correo')}}</textarea>
+               <label for="piso">Piso</label>
+               <input type="text" class="form-control" id="piso" name="piso" value="{{old('piso')}}" />
            </div>
-           <button type="submit" class="btn btn-success">Guardar Editorial</button>
+           <div class="form-group">
+               <label for="campanias_id">Campaña</label>
+               <input type="text" class="form-control" id="campanias_id" name="campanias_id" value="{{old('campanias_id')}}" />
+           </div>
+           <!--<div class="form-group">
+               <label for="campanias_id">Campaña</label>
+               <select class="form-select" id="estado" name="estado">
+                    <option value="visible" selected>Visible</option>
+                    <option value="invisible">Invisible</option>
+                </select>
+           </div>!-->
+           <div class="form-group">
+               <label for="supervisor">Supervisor</label>
+               <input type="text" class="form-control" id="supervisor" name="supervisor" value="{{old('supervisor')}}" />
+           </div>
+           <div class="form-group">
+               <label for="estado">Estado</label>
+               <select class="form-select" id="estado" name="estado">
+                    <option value="habilitada" selected>Habilitada</option>
+                    <option value="deshabilitada">Deshabilitada</option>
+                </select>
+           </div>
+           <div class="form-group">
+               <label for="visible">Visible</label>
+               <select class="form-select" id="visible" name="visible">
+                    <option value="visible" selected>Visible</option>
+                    <option value="invisible">Invisible</option>
+                </select>
+           </div>
+           <button type="submit" class="btn btn-success">Guardar Estacion</button>
        </form>
    </div>
 </div>

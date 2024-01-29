@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Usuarios;
 
 class UsuariosController extends Controller
 {
@@ -12,6 +13,7 @@ class UsuariosController extends Controller
     public function index()
     {
         //
+        return view('campanias.index');
     }
 
     /**
@@ -20,6 +22,7 @@ class UsuariosController extends Controller
     public function create()
     {
         //
+        return view('campanias.create');   
     }
 
     /**
@@ -28,14 +31,26 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        $this->validate($request, [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'extensiones' => 'required',
+            'direccion' => 'required',
+            'estado' => 'required'
+         ]);
+         
+         
+         $campania = new Campanias();
+         $campania->nombre = $request->input('nombre');
+         $campania->descripcion = $request->input('descripcion');
+         $campania->extensiones = $request->input('extensiones');
+         $campania->direccion = $request->input('direccion');
+         $campania->estado = $request->input('estado');
+         $campania->save();
+         return redirect()->route('campanias.index')->with(array(
+            'message' => 'La Campaña se ha guardado correctamente'
+         ));
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

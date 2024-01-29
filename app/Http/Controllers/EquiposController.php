@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Equipos;
 
 class EquiposController extends Controller
 {
@@ -12,6 +13,7 @@ class EquiposController extends Controller
     public function index()
     {
         //
+        return view('equipos.index');
     }
 
     /**
@@ -20,6 +22,7 @@ class EquiposController extends Controller
     public function create()
     {
         //
+        return view('equipos.create');   
     }
 
     /**
@@ -28,6 +31,31 @@ class EquiposController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+        'numeroserie' => 'required',
+        'marca' => 'required',
+        'modelo' => 'required',
+        'sistemaoperativo' => 'required',
+        'tipo' => 'required',
+        'valor' => 'required',
+        'anio' => 'required'
+         ]);
+         
+         
+         $equipo = new Equipos();
+         $equipo->numeroserie = $request->input('numeroserie');
+         $equipo->marca = $request->input('marca');
+         $equipo->modelo = $request->input('modelo');
+         $equipo->sistemaoperativo = $request->input('sistemaoperativo');
+         $equipo->tipo = $request->input('tipo');
+         $equipo->valor = $request->input('valor');
+         $equipo->anio = $request->input('anio');
+         $equipo->estado = "Sin asignar";
+         $equipo->save();
+         return redirect()->route('equipos.index')->with(array(
+            'message' => 'El equipo se ha guardado correctamente'
+         ));
+
     }
 
     /**

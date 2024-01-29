@@ -41,7 +41,7 @@
                 </select>
            </div>
            <br>
-           <button type="submit" class="btn btn-success">Guardar campania</button>
+           <button type="submit" class="btn btn-success">Guardar campaña</button>
        </form>
    </div>
 </div>

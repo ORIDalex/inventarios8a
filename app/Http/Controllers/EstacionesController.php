@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Estaciones;
 
 class EstacionesController extends Controller
 {
@@ -12,6 +13,7 @@ class EstacionesController extends Controller
     public function index()
     {
         //
+        return view('estaciones.index');
     }
 
     /**
@@ -19,7 +21,7 @@ class EstacionesController extends Controller
      */
     public function create()
     {
-        //Abre el formulario de captura de registros
+        //
         return view('estaciones.create');   
     }
 
@@ -29,14 +31,30 @@ class EstacionesController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        $this->validate($request, [
+            'equipos_id' => 'required',
+            'nodo' => 'required',
+            'piso' => 'required',
+            'campanias_id' => 'required',
+            'estado' => 'required',
+            'supervisor' => 'required',
+            'visible' => 'required'
+         ]);
+         
+         
+         $estacion = new Estaciones();
+         $estacion->equipos_id = $request->input('equipos_id');
+         $estacion->nodo = $request->input('nodo');
+         $estacion->piso = $request->input('piso');
+         $estacion->campanias_id = $request->input('campanias_id');
+         $estacion->estado = $request->input('estado');
+         $estacion->supervisor = $request->input('supervisor');
+         $estacion->visible = $request->input('visible');
+         $estacion->save();
+         return redirect()->route('estaciones.index')->with(array(
+            'message' => 'La Estacion se ha guardado correctamente'
+         ));
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
