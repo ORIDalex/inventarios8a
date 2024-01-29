@@ -32,10 +32,31 @@ Route::middleware([
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+#-------------- CRUD estaciones ---------------------
 Route::resource('estaciones', EstacionesController::class)->except(['show'])
 ->middleware('auth');
+Route::get('/delete-estacion/{estaciones_id}', array(
+    'as' => 'estacionesDelete',
+    'middleware' => 'auth',
+    'uses' => '\App\Http\Controllers\EstacionesController@LogicDelete'
+));
+
+#-------------- CRUD campanias ---------------------
 Route::resource('campanias', CampaniasController::class)->except(['show'])
     ->middleware('auth');
+Route::get('/delete-campania/{campania_id}', array(
+    'as' => 'campaniasDelete',
+    'middleware' => 'auth',
+    'uses' => '\App\Http\Controllers\CampaniasController@LogicDelete'
+));
+
+#-------------- CRUD equipos ---------------------
 Route::resource('equipos', EquiposController::class)->except(['show'])
     ->middleware('auth');
-
+Route::get('/delete-equipo/{equipos_id}', array(
+    'as' => 'equiposDelete',
+    'middleware' => 'auth',
+    'uses' => '\App\Http\Controllers\EquiposController@LogicDelete'
+));
+     

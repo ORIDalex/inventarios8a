@@ -89,4 +89,20 @@ class EquiposController extends Controller
     {
         //
     }
+
+    /**
+     * Elimina de manera logica un registro de la base de datos.
+     */
+    public function LogicDelete($equipo_id){
+        $equipo = Equipos::find($equipo_id);
+        if($equipo){
+            $equipo->estado = "destruccion";
+            $equipo->update();
+            return redirect()->route('equipos.index')->with(array(
+                "message" => "El equipo se ha asignado a destruccion correctamente"));
+        }else{
+            return redirect()->route('campanias.index')->with(array(
+           "message" => "El equipo no existe"));
+        }
+     }
 }

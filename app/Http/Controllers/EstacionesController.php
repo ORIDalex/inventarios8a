@@ -80,4 +80,17 @@ class EstacionesController extends Controller
     {
         //
     }
+
+    public function LogicDelete($equipo_id){
+        $estacion = Estaciones::find($equipo_id);
+        if($estacion){
+            $estacion->visible = "invisible";
+            $estacion->update();
+            return redirect()->route('estaciones.index')->with(array(
+                "message" => "La estacion se eliminado correctamente"));
+        }else{
+            return redirect()->route('estaciones.index')->with(array(
+            "message" => "La estacion no existe"));
+        }
+     }
 }

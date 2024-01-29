@@ -84,4 +84,21 @@ class CampaniasController extends Controller
     {
         //
     }
+
+    /**
+     * Elimina de manera logica un registro de la base de datos.
+     */
+    public function LogicDelete($campania_id){
+        $campania = Campanias::find($campania_id);
+        if($campania){
+            $campania->estado = "deshabilitada";
+            $campania->update();
+            return redirect()->route('campanias.index')->with(array(
+                "message" => "La campaña se ha eliminado correctamente"));
+        }else{
+            return redirect()->route('campanias.index')->with(array(
+           "message" => "La campaña que trata de eliminar no existe"));
+        }
+     }
+     
 }
