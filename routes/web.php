@@ -46,18 +46,23 @@ Route::get('/estaciones-delete/{estaciones_id}', array(
 #-------------- CRUD campanias ---------------------
 Route::resource('campanias', CampaniasController::class)->except(['show'])
     ->middleware('auth');
-    Route::get('/campanias-delete/{campania_id}', array(
+    Route::get('/campanias/LogicDelete/{id}', array(
         'as' => 'campaniasDelete',
         'middleware' => 'auth',
         'uses' => '\App\Http\Controllers\CampaniasController@LogicDelete'
     ));
-    Route::get('/campanias-edit/{campania_id}', array(
-        'as' => 'edit-campania/',
+    Route::get('/campanias-edit', array(
+        'as' => 'edit-campania',
         'middleware' => 'auth',
         'uses' => '\App\Http\Controllers\CampaniasController@edit'
     ));
-    Route::get('/campanias-create', array(
-        'as' => 'campanias-create',
+    Route::post('/campanias-update', array(
+        'as' => 'campanias-update',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\CampaniasController@update'
+    ));
+    Route::get('/campanias.create', array(
+        'as' => 'create-campania',
         'middleware' => 'auth',
         'uses' => '\App\Http\Controllers\CampaniasController@create'
     ));

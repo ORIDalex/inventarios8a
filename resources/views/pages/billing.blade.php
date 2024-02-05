@@ -203,12 +203,6 @@
                                     <span class="text-xs">VAT Number: <span
                                             class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
                                 </div>
-                                <div class="ms-auto text-end">
-                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
-                                            class="far fa-trash-alt me-2"></i>Delete</a>
-                                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i
-                                            class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                                </div>
                             </li>
                             <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
                                 <div class="d-flex flex-column">

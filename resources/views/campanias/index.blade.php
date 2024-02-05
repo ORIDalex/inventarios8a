@@ -1,6 +1,6 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Tables'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Campañas'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -8,7 +8,7 @@
                     <div class="card-header pb-0">
                         <h6>Campañas</h6>
                         <span class="badge badge-sm bg-gradient-success">
-                            <a href="{{route('campanias-create')}}">
+                            <a href="{{route('create-campania')}}">
                                 Crear
                             </a>
                         </span>
@@ -57,10 +57,10 @@
                                             <span class="badge badge-sm bg-gradient-{{($campania->estado== "habilitada") ? "success" : "secondary"}}">{{$campania->estado}}</span>
                                         </td>
                                         <td class="align-middle px-2">
-                                            <a href="{{route('edit-campania/',['campania_id' => $campania->id])}}" class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Edit user">
-                                                Editar
-                                            </a>
+                                            <form action="{{ route('edit-campania') }}" method="get" enctype="multipart/form-data">
+                                                <button type="submit" class="btn btn-sm">Editar</button>
+                                                <input type="hidden" id="id" name="id" value="{{$campania->id}}"/>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

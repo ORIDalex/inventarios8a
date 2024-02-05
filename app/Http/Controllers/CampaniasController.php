@@ -51,7 +51,6 @@ class CampaniasController extends Controller
          return redirect()->route('campanias')->with(array(
             'message' => 'La Campaña se ha guardado correctamente'
          ));
-
     }
 
     /**
@@ -65,18 +64,41 @@ class CampaniasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
         //
-        echo "editar";
+        $this->validate($request, [
+            'id'=>'required'
+        ]);
+        $campania = Campanias::find($request->input('id'));
+        return view('campanias.edit', compact('campania'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
+        $this->validate($request, [
+            'id'=>'required',
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'extensiones' => 'required',
+            'direccion' => 'required',
+            'estado' => 'required'
+         ]);
+         
+         $campania = Campanias::find($request->input('id'));
+         $campania->nombre = $request->input('nombre');
+         $campania->descripcion = $request->input('descripcion');
+         $campania->extensiones = $request->input('extensiones');
+         $campania->direccion = $request->input('direccion');
+         $campania->estado = $request->input('estado');
+         $campania->update();
+         return redirect()->route('campanias')->with(array(
+            'message' => 'La Campaña se ha actualizado correctamente'
+         ));
     }
 
     /**
@@ -90,15 +112,15 @@ class CampaniasController extends Controller
     /**
      * Elimina de manera logica un registro de la base de datos.
      */
-    public function LogicDelete($campania_id){
-        $campania = Campanias::find($campania_id);
+    public function LogicDelete(string $id){
+        $campania = Campanias::find($id);
         if($campania){
-            $campania->estado = "deshabilitada";
+            $campania->estado = ($campania->estado == "deshabilitada") ? "habilitada" : "deshabilitada";
             $campania->update();
-            return redirect()->route('campanias.index')->with(array(
+            return redirect()->route('campanias')->with(array(
                 "message" => "La campaña se ha eliminado correctamente"));
         }else{
-            return redirect()->route('campanias.index')->with(array(
+            return redirect()->route('campanias')->with(array(
            "message" => "La campaña que trata de eliminar no existe"));
         }
      }
