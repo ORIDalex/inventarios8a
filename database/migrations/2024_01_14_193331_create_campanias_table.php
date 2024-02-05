@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("nombre", 80);
             $table->string("descripcion", 300);
-            $table->string("extensiones", 10);
+            $table->string("extensiones", 100);
             $table->string("direccion", 200);
             $table->string("estado", 30);
             $table->timestamps();

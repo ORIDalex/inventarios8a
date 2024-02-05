@@ -13,7 +13,8 @@ class CampaniasController extends Controller
     public function index()
     {
         //
-        return view('campanias.index');
+        $campanias=Campanias::paginate();
+        return view('campanias.index', compact('campanias'));
     }
 
     /**
@@ -47,7 +48,7 @@ class CampaniasController extends Controller
          $campania->direccion = $request->input('direccion');
          $campania->estado = $request->input('estado');
          $campania->save();
-         return redirect()->route('campanias.index')->with(array(
+         return redirect()->route('campanias')->with(array(
             'message' => 'La Campaña se ha guardado correctamente'
          ));
 
@@ -67,6 +68,7 @@ class CampaniasController extends Controller
     public function edit(string $id)
     {
         //
+        echo "editar";
     }
 
     /**
