@@ -124,5 +124,16 @@ class CampaniasController extends Controller
            "message" => "La campaña que trata de eliminar no existe"));
         }
      }
+
+     public function imprimir(){
+        
+        $campanias=Campanias::paginate();
+
+        $pdf = \PDF::loadView('campanias.print', compact('campanias'));
+        $time = time();
+        $nombre ="TCampanias". date("d-m-Y (H:i:s)", $time) . ".pdf"; 
+        return $pdf->download($nombre);
+   }
+   
      
 }

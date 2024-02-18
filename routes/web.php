@@ -44,7 +44,7 @@ Route::get('/estaciones-delete/{estaciones_id}', array(
 
 
 #-------------- CRUD campanias ---------------------
-Route::resource('campanias', CampaniasController::class)->except(['show'])
+Route::resource('/campanias', CampaniasController::class)->except(['show'])
     ->middleware('auth');
     Route::get('/campanias/LogicDelete/{id}', array(
         'as' => 'campaniasDelete',
@@ -80,6 +80,9 @@ Route::get('/delete-equipo/{equipos_id}', array(
     'middleware' => 'auth',
     'uses' => '\App\Http\Controllers\EquiposController@LogicDelete'
 ));
+
+#-------------- Imprimir PDF ---------------------
+Route::name('print')->get('/print', '\App\Http\Controllers\CampaniasController@imprimir');
      
 
 use App\Http\Controllers\HomeController;
