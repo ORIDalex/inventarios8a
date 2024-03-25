@@ -13,7 +13,8 @@ class EquiposController extends Controller
     public function index()
     {
         //
-        return view('equipos.index');
+        $equipos=Equipos::paginate();
+        return view('equipos.index', compact('equipos'));
     }
 
     /**
@@ -69,17 +70,47 @@ class EquiposController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
         //
+        $this->validate($request, [
+            'id'=>'required'
+        ]);
+        $equipo = Equipos::find($request->input('id'));
+        return view('equipos.edit', compact('equipo'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
+        $this->validate($request, [
+            'numeroserie' => 'required',
+            'marca' => 'required',
+            'modelo' => 'required',
+            'sistemaoperativo' => 'required',
+            'tipo' => 'required',
+            'valor' => 'required',
+            'anio' => 'required',
+            'estado' => 'required'
+             ]);
+             
+             
+             $equipo = Equipos::find($request->input('id'));
+             $equipo->numeroserie = $request->input('numeroserie');
+             $equipo->marca = $request->input('marca');
+             $equipo->modelo = $request->input('modelo');
+             $equipo->sistemaoperativo = $request->input('sistemaoperativo');
+             $equipo->tipo = $request->input('tipo');
+             $equipo->valor = $request->input('valor');
+             $equipo->anio = $request->input('anio');
+             $equipo->estado = $request->input('estado');
+             $equipo->save();
+             return redirect()->route('equipos.index')->with(array(
+                'message' => 'El equipo se ha actualizado correctamente'
+             ));
     }
 
     /**

@@ -1,12 +1,12 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Campañas'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Estaciones'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Campañas</h6>
+                        <h6>Estaciones</h6>
                         <span class="badge badge-sm bg-gradient-success">
                             <a href="{{route('create-campania')}}">
                                 Crear

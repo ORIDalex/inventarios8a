@@ -34,13 +34,33 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #-------------- CRUD estaciones ---------------------
-Route::resource('estaciones', EstacionesController::class)->except(['show'])
-->middleware('auth');
-Route::get('/estaciones-delete/{estaciones_id}', array(
-    'as' => 'estacionesDelete',
-    'middleware' => 'auth',
-    'uses' => '\App\Http\Controllers\EstacionesController@LogicDelete'
-));
+Route::resource('/estaciones', EstacionesController::class)->except(['show'])
+    ->middleware('auth');
+    Route::get('/estaciones/LogicDelete/{id}', array(
+        'as' => 'estacionesDelete',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\estacionesController@LogicDelete'
+    ));
+    Route::get('/estacion-edit', array(
+        'as' => 'estacion-edit',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\estacionesController@edit'
+    ));
+    Route::post('/estaciones-update', array(
+        'as' => 'estacion-update',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\estacionesController@update'
+    ));
+    Route::get('/estaciones-create', array(
+        'as' => 'estaciones-create',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\estacionesController@create'
+    ));
+    Route::get('/estaciones', array(
+        'as' => 'estaciones.index',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\estacionesController@index'
+    ));
 
 
 #-------------- CRUD campanias ---------------------
@@ -75,11 +95,31 @@ Route::resource('/campanias', CampaniasController::class)->except(['show'])
 #-------------- CRUD equipos ---------------------
 Route::resource('equipos', EquiposController::class)->except(['show'])
     ->middleware('auth');
-Route::get('/delete-equipo/{equipos_id}', array(
-    'as' => 'equiposDelete',
-    'middleware' => 'auth',
-    'uses' => '\App\Http\Controllers\EquiposController@LogicDelete'
-));
+    Route::get('/equipos/LogicDelete/{id}', array(
+        'as' => 'equipos-delete',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\EquiposController@LogicDelete'
+    ));
+    Route::get('/equipos-edit', array(
+        'as' => 'equipos-edit',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\EquiposController@edit'
+    ));
+    Route::post('/equipos-update', array(
+        'as' => 'equipos-update',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\EquiposController@update'
+    ));
+    Route::get('/equipos.create', array(
+        'as' => 'equipos-create',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\EquiposController@create'
+    ));
+    Route::get('/equipos', array(
+        'as' => 'equipos.index',
+        'middleware' => 'auth',
+        'uses' => '\App\Http\Controllers\EquiposController@index'
+    ));
 
 #-------------- Imprimir PDF ---------------------
 Route::name('print')->get('/print', '\App\Http\Controllers\CampaniasController@imprimir');
